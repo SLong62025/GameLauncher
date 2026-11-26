@@ -1,0 +1,16 @@
+C:\Users\longi\Documents\GitHub\GameLauncher\Launcher.Providers\bin\Debug\net10.0\Launcher.Providers.deps.json
+C:\Users\longi\Documents\GitHub\GameLauncher\Launcher.Providers\bin\Debug\net10.0\Launcher.Providers.dll
+C:\Users\longi\Documents\GitHub\GameLauncher\Launcher.Providers\bin\Debug\net10.0\Launcher.Providers.pdb
+C:\Users\longi\Documents\GitHub\GameLauncher\Launcher.Providers\bin\Debug\net10.0\Launcher.Core.dll
+C:\Users\longi\Documents\GitHub\GameLauncher\Launcher.Providers\bin\Debug\net10.0\Launcher.Core.pdb
+C:\Users\longi\Documents\GitHub\GameLauncher\Launcher.Providers\obj\Debug\net10.0\Launcher.Providers.csproj.AssemblyReference.cache
+C:\Users\longi\Documents\GitHub\GameLauncher\Launcher.Providers\obj\Debug\net10.0\Launcher.Providers.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\longi\Documents\GitHub\GameLauncher\Launcher.Providers\obj\Debug\net10.0\Launcher.Providers.AssemblyInfoInputs.cache
+C:\Users\longi\Documents\GitHub\GameLauncher\Launcher.Providers\obj\Debug\net10.0\Launcher.Providers.AssemblyInfo.cs
+C:\Users\longi\Documents\GitHub\GameLauncher\Launcher.Providers\obj\Debug\net10.0\Launcher.Providers.csproj.CoreCompileInputs.cache
+C:\Users\longi\Documents\GitHub\GameLauncher\Launcher.Providers\obj\Debug\net10.0\Launcher.Providers.sourcelink.json
+C:\Users\longi\Documents\GitHub\GameLauncher\Launcher.Providers\obj\Debug\net10.0\Launcher.A4EE5EE3.Up2Date
+C:\Users\longi\Documents\GitHub\GameLauncher\Launcher.Providers\obj\Debug\net10.0\Launcher.Providers.dll
+C:\Users\longi\Documents\GitHub\GameLauncher\Launcher.Providers\obj\Debug\net10.0\refint\Launcher.Providers.dll
+C:\Users\longi\Documents\GitHub\GameLauncher\Launcher.Providers\obj\Debug\net10.0\Launcher.Providers.pdb
+C:\Users\longi\Documents\GitHub\GameLauncher\Launcher.Providers\obj\Debug\net10.0\ref\Launcher.Providers.dll

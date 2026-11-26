@@ -1,0 +1,56 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "Launcher.Providers/1.0.0": {
+        "dependencies": {
+          "Launcher.Core": "1.0.0",
+          "ValveKeyValue": "0.80.0.542"
+        },
+        "runtime": {
+          "Launcher.Providers.dll": {}
+        }
+      },
+      "ValveKeyValue/0.80.0.542": {
+        "runtime": {
+          "lib/net10.0/ValveKeyValue.dll": {
+            "assemblyVersion": "0.80.0.0",
+            "fileVersion": "0.80.0.542",
+            "localPath": "ValveKeyValue.dll"
+          }
+        }
+      },
+      "Launcher.Core/1.0.0": {
+        "runtime": {
+          "Launcher.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Launcher.Providers/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ValveKeyValue/0.80.0.542": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tuM+//7kpcWQIQ5I/I5WoB0mSHmqY2ExicD/pzQUQHH2vAm+5FUMBoVzsUtRPe7Mo1Hi+LZTOGSnLPBP8S94/Q==",
+      "path": "valvekeyvalue/0.80.0.542",
+      "hashPath": "valvekeyvalue.0.80.0.542.nupkg.sha512"
+    },
+    "Launcher.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

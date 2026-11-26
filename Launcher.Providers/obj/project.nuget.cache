@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "LEjvSKQgWCQ=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\longi\\Documents\\GitHub\\GameLauncher\\Launcher.Providers\\Launcher.Providers.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\longi\\.nuget\\packages\\valvekeyvalue\\0.80.0.542\\valvekeyvalue.0.80.0.542.nupkg.sha512"
+  ],
+  "logs": []
+}
