@@ -1,7 +1,6 @@
 ﻿namespace Launcher.Core;
 
-public enum GameStore
-{
+public enum GameStore {
     Steam,
     EpicGames
 }

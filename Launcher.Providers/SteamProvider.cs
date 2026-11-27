@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -7,16 +7,14 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Launcher.Core;
-using Microsoft.Win32;
 
 namespace Launcher.Providers;
 
-public sealed class SteamProvider : ILibraryProvider
-{
-    //Only count games that can be launched (excludes titles being installed/updated)
+public sealed class SteamProvider : ILibraryProvider {
+    //Only fetch fully installed titles
     private const int StateFullyInstalled = 4;
 
-    //Ignore SteamWorks Common or whatever its called.
+    //Exclude Steamworks Common Redistributables
     private static readonly HashSet<string> IgnoredAppIds = new() { "228980" };
 
     public GameStore Store => GameStore.Steam;
@@ -27,7 +25,7 @@ public sealed class SteamProvider : ILibraryProvider
     public void Launch(Game game) => ShellLauncher.Open(game.LaunchUri);
 
     private static IReadOnlyList<Game> Scan(CancellationToken ct) {
-        var steamPath = FindSteamPath();
+        var steamPath = SteamLocator.FindSteamPath();
         if (steamPath is null) return Array.Empty<Game>();
 
         var games = new Dictionary<string, Game>();
@@ -36,8 +34,7 @@ public sealed class SteamProvider : ILibraryProvider
             var steamApps = Path.Combine(library, "steamapps");
             if (!Directory.Exists(steamApps)) continue;
 
-            foreach (var manifest in Directory.EnumerateFiles(steamApps, "appmanifest_*.acf"))
-            {
+            foreach (var manifest in Directory.EnumerateFiles(steamApps, "appmanifest_*.acf")) {
                 ct.ThrowIfCancellationRequested();
 
                 var game = TryReadManifest(manifest, steamApps);
@@ -48,45 +45,23 @@ public sealed class SteamProvider : ILibraryProvider
         return games.Values.ToList();
     }
 
-    private static string? FindSteamPath() {
-        string? fromRegistry = null;
-        if (OperatingSystem.IsWindows()) {
-            using var key = Registry.CurrentUser.OpenSubKey(@"Software\Valve\Steam");
-            fromRegistry = key?.GetValue("SteamPath") as string;
-        }
-
-        var candidates = new[] {
-            fromRegistry,
-            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "Steam")
-        };
-
-        return candidates
-            .Where(p => !string.IsNullOrWhiteSpace(p))
-            .Select(p => Path.GetFullPath(p!))
-            .FirstOrDefault(p => File.Exists(Path.Combine(p, "steamapps", "libraryfolders.vdf")));
-    }
-    
-    private static IEnumerable<string> FindLibraries(string steamPath)
-    {
+    //Read from libraryfolders.vdf.
+    private static IEnumerable<string> FindLibraries(string steamPath) {
         var libraries = new List<string> { steamPath };
-
         try {
             var vdf = File.ReadAllText(Path.Combine(steamPath, "steamapps", "libraryfolders.vdf"));
             var folders = VdfParser.Parse(vdf).GetNode("libraryfolders");
-
-            if (folders is not null)
-            {
-                foreach (var entry in folders.Children.Values)
-                {
+            if (folders is not null) {
+                foreach (var entry in folders.Children.Values) {
                     var path = entry.GetString("path");
-                    if (!string.IsNullOrWhiteSpace(path))
+                    if (!string.IsNullOrWhiteSpace(path)) {
                         libraries.Add(Path.GetFullPath(path));
+                    }
                 }
             }
         }
-        catch (Exception ex) when (ex is IOException or FormatException or UnauthorizedAccessException or ArgumentException)
-        {
-            Debug.WriteLine($"Could not read Steam library folders: {ex.Message}");
+        catch (Exception e) when (e is IOException or FormatException or UnauthorizedAccessException or ArgumentException) {
+
         }
 
         return libraries.Distinct(StringComparer.OrdinalIgnoreCase);
@@ -112,7 +87,7 @@ public sealed class SteamProvider : ILibraryProvider
 
             return new Game(id, name, GameStore.Steam, $"steam://rungameid/{id}", installPath);
         }
-        catch (Exception ex) when (ex is IOException or FormatException or UnauthorizedAccessException) {
+        catch (Exception e) when (e is IOException or FormatException or UnauthorizedAccessException) {
             return null;
         }
     }

@@ -4,10 +4,9 @@
         x:Class="Launcher.App.MainWindow"
         x:DataType="vm:MainViewModel"
         Title="Game Launcher"
-        Width="1000" Height="650">
+        Width="1000" Height="700">
 
   <DockPanel>
-
     <ScrollViewer HorizontalScrollBarVisibility="Disabled">
       <ItemsControl ItemsSource="{Binding Games}" Margin="8">
         <ItemsControl.ItemsPanel>
@@ -18,20 +17,28 @@
 
         <ItemsControl.ItemTemplate>
           <DataTemplate x:DataType="vm:GameTileViewModel">
-            <Border Width="200" Height="130" Margin="6" Padding="12"
-                    CornerRadius="8" BorderThickness="1"
-                    BorderBrush="#44808080" Background="#18808080">
-              <DockPanel>
-                <Button DockPanel.Dock="Bottom" Content="Launch"
-                        HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
-                        Command="{Binding LaunchCommand}" />
-                <StackPanel Spacing="4">
-                  <TextBlock Text="{Binding Title}" FontWeight="SemiBold"
-                             TextWrapping="Wrap" MaxLines="3" TextTrimming="CharacterEllipsis" />
-                  <TextBlock Text="{Binding StoreLabel}" FontSize="12" Opacity="0.6" />
-                </StackPanel>
-              </DockPanel>
-            </Border>
+            <Button Width="172" Margin="6" Padding="6"
+                    Background="Transparent"
+                    HorizontalContentAlignment="Stretch" VerticalContentAlignment="Top"
+                    Command="{Binding LaunchCommand}"
+                    ToolTip.Tip="{Binding Title}">
+              <StackPanel Spacing="6">
+                
+                <Border Width="160" Height="240" CornerRadius="6" ClipToBounds="True"
+                        Background="#22808080">
+                  <Grid>
+                    <Image Source="{Binding Cover}" Stretch="UniformToFill" />
+                    <TextBlock Text="No cover art" IsVisible="{Binding !HasCover}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"
+                               FontSize="12" Opacity="0.5" />
+                  </Grid>
+                </Border>
+
+                <TextBlock Text="{Binding Title}" FontWeight="SemiBold"
+                           TextTrimming="CharacterEllipsis" MaxLines="1" />
+                <TextBlock Text="{Binding StoreLabel}" FontSize="12" Opacity="0.6" />
+              </StackPanel>
+            </Button>
           </DataTemplate>
         </ItemsControl.ItemTemplate>
       </ItemsControl>
